@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Disease Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        color: #333;
+      }
+      h1 {
+        color: #2a75bb;
+        text-align: center;
+      }
+      form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        color: #4b4b4b;
+      }
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #d1d1d1;
+        border-radius: 4px;
+        background-color: #fafafa;
+      }
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+      button {
+        background-color: #2a75bb;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin-top: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #1a5d99;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 15px;
+        border: 2px solid #2a75bb;
+        border-radius: 8px;
+        background-color: #e6f4ff;
+        color: #2a75bb;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Heart Disease Prediction Form</h1>
+      <form action="/predict" method="POST">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required />
+
+        <label for="oldpeak">Oldpeak:</label>
+        <input type="number" id="oldpeak" name="oldpeak" step="0.1" required />
+
+        <label for="ca">CA (Number of Major Vessels):</label>
+        <input type="number" id="ca" name="ca" required />
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+
+        <label for="dataset">Dataset:</label>
+        <select id="dataset" name="dataset" required>
+          <option value="Cleveland">Cleveland</option>
+          <option value="Hungary">Hungary</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="VA Long Beach">VA Long Beach</option>
+        </select>
+
+        <label for="cp">Chest Pain Type (CP):</label>
+        <select id="cp" name="cp" required>
+          <option value="typical angina">Typical Angina</option>
+          <option value="atypical angina">Atypical Angina</option>
+          <option value="non-anginal">Non-anginal</option>
+        </select>
+
+        <label for="fbs">Fasting Blood Sugar (FBS) > 120 mg/dl:</label>
+        <input type="checkbox" id="fbs" name="fbs" />
+
+        <label for="restecg">Resting ECG Results:</label>
+        <select id="restecg" name="restecg" required>
+          <option value="normal">Normal</option>
+          <option value="st-t abnormality">ST-T Abnormality</option>
+          <option value="lv hypertroph">Lv hypertroph</option>
+        </select>
+
+        <label for="exang">Exercise Induced Angina (Exang):</label>
+        <input type="checkbox" id="exang" name="exang" />
+
+        <label for="slope">Slope of the Peak Exercise ST Segment:</label>
+        <select id="slope" name="slope" required>
+          <option value="upsloping">Upsloping</option>
+          <option value="downsloping">Downsloping</option>
+          <option value="flat">Flat</option>
+        </select>
+
+        <label for="thal">Thalassemia (Thal):</label>
+        <select id="thal" name="thal" required>
+          <option value="normal">Normal</option>
+          <option value="reversable defect">Reversible Defect</option>
+          <option value="fixed defect">Fixed Defect</option>
+        </select>
+
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result">
+        <h2>Prediction Result:</h2>
+        <p>{{ prediction }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
