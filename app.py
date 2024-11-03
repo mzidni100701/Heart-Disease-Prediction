@@ -5,6 +5,7 @@ import joblib
 import sklearn
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, OneHotEncoder
 from flask import Flask, request, jsonify, render_template
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
